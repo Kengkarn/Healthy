@@ -46,6 +46,7 @@ public class SleepFragment extends Fragment {
 
         loadSleepData();
         initAddBtn();
+        initBackBtn();
         initEditBtn();
     }
 
@@ -75,6 +76,17 @@ public class SleepFragment extends Fragment {
             public void onClick(View v) {
                 sleep = Sleep.setSleepInstance();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new SleepFormFragment()).commit();
+            }
+        });
+    }
+
+    void initBackBtn() {
+        Button _backBtn = getView().findViewById(R.id.sleep_back);
+
+        _backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new MenuFragment()).commit();
             }
         });
     }

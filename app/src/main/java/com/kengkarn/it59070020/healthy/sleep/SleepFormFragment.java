@@ -1,6 +1,7 @@
 package com.kengkarn.it59070020.healthy.sleep;
 
 import android.annotation.SuppressLint;
+import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,12 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 
 import com.kengkarn.it59070020.healthy.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class SleepFormFragment extends Fragment {
@@ -37,8 +42,64 @@ public class SleepFormFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        EditText _dateTxt = getActivity().findViewById(R.id.frg_sleep_form_date);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
+        _dateTxt.setHint(format.format(new Date()));
+        final EditText _timetosleepTxt = getView().findViewById(R.id.frg_sleep_form_timetosleep);
+        _timetosleepTxt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        if (i < 10){
+                            _timetosleepTxt.setText("0" + i + ":" + i1);
+                        }
+                        else {
+                            _timetosleepTxt.setText(i + ":" + i1);
+                        }
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                        mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
+        final EditText _timetowakeupTxt = getView().findViewById(R.id.frg_sleep_form_timetowakeup);
+        _timetowakeupTxt.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        if (i < 10){
+                            _timetowakeupTxt.setText("0" + i + ":" + i1);
+                        }
+                        else {
+                            _timetowakeupTxt.setText(i + ":" + i1);
+                        }
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
         db = getActivity().openOrCreateDatabase("my.db", Context.MODE_PRIVATE, null);
         sleep = Sleep.getSleepInstance();
+
 
         initSaveBtn();
         initBackBtn();
@@ -72,7 +133,6 @@ public class SleepFormFragment extends Fragment {
         EditText _dateTxt = getView().findViewById(R.id.frg_sleep_form_date);
         EditText _timetosleepTxt = getView().findViewById(R.id.frg_sleep_form_timetosleep);
         EditText _timetowakeupTxt = getView().findViewById(R.id.frg_sleep_form_timetowakeup);
-
         String _dateStr = _dateTxt.getText().toString();
         String _timetosleepStr = _timetosleepTxt.getText().toString();
         String _timetowakeupStr = _timetowakeupTxt.getText().toString();
