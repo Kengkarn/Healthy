@@ -12,6 +12,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
+
+        <Button
+            android:id="@+id/sleep_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="@string/sleep_back"
+            android:textColor="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:orientation="horizontal"></LinearLayout>
+
         <Button
             android:id="@+id/sleep_addBtn"
             android:layout_width="match_parent"
@@ -19,27 +33,33 @@
             android:background="@drawable/button"
             android:text="@string/sleep_add"
             android:textColor="@android:color/white" />
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="499dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        android:fillViewport="true"
-        android:padding="10dp">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="499dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            android:fillViewport="true"
+            android:padding="10dp">
 
-            <ListView
-                android:id="@+id/sleep_sleeplist"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></ListView>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <ListView
+                    android:id="@+id/sleep_sleeplist"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></ListView>
 
-    </ScrollView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+
 
 </android.support.constraint.ConstraintLayout>
