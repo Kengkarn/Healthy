@@ -95,7 +95,7 @@ public class SleepFormFragment extends Fragment {
                 mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                        if (i < 10 || i1 < 10){
+                        if (i < 10){
                             if (i1 < 10) {
                                 _timetowakeupTxt.setText("0" + i + ":" + "0" + i1);
                             }
