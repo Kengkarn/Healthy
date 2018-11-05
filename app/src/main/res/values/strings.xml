@@ -9,7 +9,7 @@
     <string name="register">REGISTER NEW ACCOUNT</string>
 
     <string name="bmi_height">Height (cm)</string>
-    <string name="bmi_width">Weight (cm)</string>
+    <string name="bmi_width">Weight (kg)</string>
     <string name="bmi_button_calculate">CALCULATE</string>
     <string name="bmi_back_btn">Back</string>
 
