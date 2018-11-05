@@ -59,10 +59,21 @@ public class SleepFormFragment extends Fragment {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
                         if (i < 10){
-                            _timetosleepTxt.setText("0" + i + ":" + i1);
+                            if (i1 < 10) {
+                                _timetosleepTxt.setText("0" + i + ":" + "0" + i1);
+                            }
+                            else {
+                                _timetosleepTxt.setText("0" + i + ":" + i1);
+                            }
+
                         }
                         else {
-                            _timetosleepTxt.setText(i + ":" + i1);
+                            if (i1 < 10) {
+                                _timetosleepTxt.setText(i + ":" + "0" + i1);
+                            }
+                            else {
+                                _timetosleepTxt.setText(i + ":" + i1);
+                            }
                         }
                     }
                 }, hour, minute, true);//Yes 24 hour time
@@ -84,11 +95,21 @@ public class SleepFormFragment extends Fragment {
                 mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                        if (i < 10){
-                            _timetowakeupTxt.setText("0" + i + ":" + i1);
+                        if (i < 10 || i1 < 10){
+                            if (i1 < 10) {
+                                _timetowakeupTxt.setText("0" + i + ":" + "0" + i1);
+                            }
+                            else {
+                                _timetowakeupTxt.setText("0" + i + ":" + i1);
+                            }
                         }
                         else {
-                            _timetowakeupTxt.setText(i + ":" + i1);
+                            if (i1 < 10) {
+                                _timetowakeupTxt.setText(i + ":" + "0" + i1);
+                            }
+                            else {
+                                _timetowakeupTxt.setText(i + ":" + i1);
+                            }
                         }
                     }
                 }, hour, minute, true);//Yes 24 hour time
@@ -165,6 +186,7 @@ public class SleepFormFragment extends Fragment {
                     resultHour = _timetowakeupHourInt - _timetosleepHourInt;
                     resultMin = _timetowakeupMinInt - _timetosleepMinInt;
                 } else {
+                    resultHour = _timetowakeupHourInt - _timetosleepHourInt;
                     resultHour -= 1;
                     resultMin = 60 - (_timetosleepMinInt - _timetowakeupMinInt);
                 }
