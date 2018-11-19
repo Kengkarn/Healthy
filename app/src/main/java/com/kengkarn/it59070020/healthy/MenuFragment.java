@@ -45,6 +45,7 @@ public class MenuFragment extends Fragment {
         _menus.addItem("Weight");
         _menus.addItem("Setup");
         _menus.addItem("Sleep");
+        _menus.addItem("Post");
         _menus.addItem("Sign out");
 
         ListView _menuList = getView().findViewById(R.id.menu_list);
@@ -65,6 +66,9 @@ public class MenuFragment extends Fragment {
                 } else if(_menus.getMenu().get(i).equals("Sleep")) {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new SleepFragment()).commit();
                     Log.d("MENU", "Selected on Sleep Menu");
+                } else if(_menus.getMenu().get(i).equals("Post")) {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new PostFragment()).commit();
+                    Log.d("MENU", "Selected on Post Menu");
                 } else if(_menus.getMenu().get(i).equals("Sign out")) {
                     _mAuth.signOut();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_view, new LoginFragment()).commit();
